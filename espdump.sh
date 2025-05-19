@@ -9,12 +9,15 @@ log_file="$out_dir/log-$file_prefix-$datestamp.txt"
 tmp_file="./.dump_rom_tmp.tmp"
 start_header="Starting dump from chip: $chip\n\ton port: $ESPPORT\n\tat: $ESPBAUD baud\n\tto directory: $out_dir\ntwith log file: $log_file\n"
 
+if [ ! -d ./live-roms ]; then
+    mkdir ./live-roms
+fi
+
 mkdir $out_dir
 
 if [ "$stub" != "False" ]; then
 	stubby='--no-stub'
 fi
-
 
 echo -e "\n====================="
 echo -e $start_header
